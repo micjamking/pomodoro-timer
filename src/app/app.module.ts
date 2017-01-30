@@ -20,6 +20,9 @@ import { TabComponent } from './components/tabs/tab/tab.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 
+// Services
+import { TimerService } from './services/timer/timer.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,9 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     HttpModule,
     AppRoutesModule
   ],
-  providers: [],
+  providers: [
+    TimerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
