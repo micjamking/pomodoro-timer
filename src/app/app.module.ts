@@ -17,6 +17,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
+import { TimerComponent } from './components/timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TabComponent } from './components/tabs/tab/tab.component';
     HistoryComponent,
     SettingsComponent,
     TabsComponent,
-    TabComponent
+    TabComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,
