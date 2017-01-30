@@ -7,15 +7,19 @@ import { HttpModule } from '@angular/http';
 import { AppRoutesModule } from './app.routes';
 
 // Views
-import { AppComponent } from './app.component';
+import { AppComponent } from './views/app-view/app.component';
 import { TimerViewComponent } from './views/timer-view/timer-view.component';
 import { AboutViewComponent } from './views/about-view/about-view.component';
+
+// Components
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerViewComponent,
-    AboutViewComponent
+    AboutViewComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
