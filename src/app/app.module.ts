@@ -15,6 +15,8 @@ import { AboutViewComponent } from './views/about-view/about-view.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HistoryComponent } from './components/history/history.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SettingsComponent } from './components/settings/settings.component';
     AboutViewComponent,
     SidebarComponent,
     HistoryComponent,
-    SettingsComponent
+    SettingsComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,

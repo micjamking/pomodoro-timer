@@ -1,5 +1,5 @@
 <p>
-  sidebar works!
+  {{ !sidebarView ? 'History' : 'Settings' }}
 </p>
 <app-history [hidden]="sidebarView"></app-history>
 <app-settings [hidden]="!sidebarView"></app-settings>
