@@ -1,3 +1,9 @@
 <p>
   sidebar works!
 </p>
+<app-history [hidden]="sidebarView"></app-history>
+<app-settings [hidden]="!sidebarView"></app-settings>
+<button type="button"
+        (click)="sidebarView = !sidebarView">
+        {{ sidebarView ? 'History' : 'Settings' }}
+</button>

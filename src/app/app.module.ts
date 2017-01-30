@@ -13,13 +13,17 @@ import { AboutViewComponent } from './views/about-view/about-view.component';
 
 // Components
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HistoryComponent } from './components/history/history.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerViewComponent,
     AboutViewComponent,
-    SidebarComponent
+    SidebarComponent,
+    HistoryComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

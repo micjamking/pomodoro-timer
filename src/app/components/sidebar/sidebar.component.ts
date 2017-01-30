@@ -8,6 +8,10 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
 
+  toggleView() {
+    
+  }
+
   ngOnInit() {
   }
 
