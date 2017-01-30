@@ -1,0 +1,46 @@
+<div class="custom-timers">
+  <h3>Customize Timers</h3>
+
+  <form class="custom-timers-form">
+    <ul class="timers-list">
+      <!-- Pomodoro Timer -->
+      <li class="pomodoro-timer">
+        <label for="pomodoro-input">Pomodoro</label>
+        <input type="text" placeholder="00" name="pomodoro-input-hrs" /> hrs : <input type="text" placeholder="25" name="pomodoro-input-min" /> min
+      </li>
+
+      <!-- Short Break Timer -->
+      <li class="short-break-timer">
+        <label for="short-break-input">Short Break</label>
+        <input type="text" placeholder="00" name="short-break-input-hrs" /> hrs : <input type="text" placeholder="05" name="short-break-input-min" /> min
+      </li>
+
+      <!-- Long Break Timer -->
+      <li class="long-break-timer">
+        <label for="long-break-input">Long Break</label>
+        <input type="text" placeholder="00" name="long-break-input-hrs" /> hrs : <input type="text" placeholder="15" name="long-break-input-min" /> min
+      </li>
+    </ul>
+
+    <!-- Auto-switch checkbox -->
+    <input type="checkbox" name="auto-switch-timers" /><label for="auto-switch-timers">Auto-switch timers at end of each interval</label>
+
+    <div class="sidebar-action">
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+</div>
+
+<div class="custom-alarms">
+  <h3>Customize Alarms</h3>
+
+  <form class="custom-timers-form">
+    <select class="custom-alarms-menu">
+      <option value="Ding">Ding</option>
+    </select>
+
+    <div class="sidebar-action">
+      <a class="preview-alarm">Preview</a>
+    </div>
+  </form>
+</div>

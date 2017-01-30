@@ -1,0 +1,50 @@
+/**
+ * Typography
+ */
+
+html {
+  font-size: $base-font;
+}
+
+body{
+  font: normal normal 300 #{type-scale(-1)}/#{$line-height} $sans-serif;
+
+  @media #{$medium-screen}{
+    font-size: type-scale(0);
+  }
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4, {
+  font-weight: 300;
+  margin: 0 0 1em;
+}
+
+h1 {
+  font-size: type-scale(4);
+}
+
+h2 {
+  font-size: type-scale(3);
+}
+
+h3 {
+  font-size: type-scale(2);
+}
+
+h4 {
+  font-size: type-scale(1);
+}
+
+h5, h6 {
+  font-size: type-scale(-1);
+}
+
+h5 {
+}
+
+h6 {
+}

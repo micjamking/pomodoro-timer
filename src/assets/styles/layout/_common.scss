@@ -1,0 +1,17 @@
+/**
+ * Common / Global Styles
+ */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+app-root {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
