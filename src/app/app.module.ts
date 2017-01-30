@@ -3,16 +3,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Modules
+import { AppRoutesModule } from './app.routes';
+
+// Views
 import { AppComponent } from './app.component';
+import { TimerViewComponent } from './views/timer-view/timer-view.component';
+import { AboutViewComponent } from './views/about-view/about-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TimerViewComponent,
+    AboutViewComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
