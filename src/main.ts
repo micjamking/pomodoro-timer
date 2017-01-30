@@ -9,4 +9,20 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+export function Main() {
+  let app    = document.querySelector('app-root');
+  let loader = document.querySelector('.application-loader');
+
+  window.setTimeout(()=> {
+    app.classList.add('active');
+    loader.classList.remove('active');
+  }, 100);
+
+  platformBrowserDynamic().bootstrapModule(AppModule);
+}
+
+if (document.readyState === 'complete') {
+  Main();
+} else {
+  document.addEventListener('DOMContentLoaded', Main);
+}

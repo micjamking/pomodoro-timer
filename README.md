@@ -41,7 +41,6 @@ __*Data Source > Service > Component*__
 - Data Services
   - Local Storage
 - UI State Services
-  - Loading
   - Timer
   - History
   - Settings

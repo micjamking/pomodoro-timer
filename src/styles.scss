@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Utility
+@import 'assets/styles/utility/variables';
+@import 'assets/styles/utility/functions';
+@import 'assets/styles/utility/mixins';
+@import 'assets/styles/utility/classes';
+
+// Base
+@import 'assets/styles/base/reset';
+@import 'assets/styles/base/typography';
+@import 'assets/styles/base/animations';
+
+// Layout
+@import 'assets/styles/layout/common';
+@import 'assets/styles/layout/grid';
+
+// Modules
+@import 'assets/styles/modules/buttons';
+@import 'assets/styles/modules/loader';
