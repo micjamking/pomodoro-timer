@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { TabComponent } from './tab/tab.component';
 
@@ -8,12 +8,15 @@ import { TabComponent } from './tab/tab.component';
 })
 export class TabsComponent implements OnInit {
   tabs: TabComponent[] = [];
+  activeTab: TabComponent;
+  @Output() onSelected = new EventEmitter();
 
   constructor() { }
 
   addTab( tab:TabComponent ) {
     if (this.tabs.length === 0) {
       tab.active = true;
+      this.activeTab = tab;
     }
 
     this.tabs.push(tab);
@@ -23,11 +26,13 @@ export class TabsComponent implements OnInit {
     this.tabs.forEach((tab) => {
       tab.active = false;
     });
+    tab.active = true;
 
-    tab.active = true
+    this.onSelected.emit(tab);
   }
 
   ngOnInit() {
+    this.onSelected.emit(this.activeTab);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core';
 
 import { TimerService } from '../../services/timer/timer.service';
 
@@ -8,27 +8,21 @@ import { TimerService } from '../../services/timer/timer.service';
 })
 export class TimerComponent implements OnInit {
   @Input() public type: string;
-  public time: string;
+  @Input() public time: any;
 
   constructor(
     private timerService: TimerService
   ) {
   }
 
-  ngOnInit() {
-    switch(this.type){
-      case 'Pomodoro':
-        this.time = '25:00';
-        break;
-      case 'Short Break':
-        this.time = '05:00';
-        break;
-      case 'Long Break':
-        this.time = '15:00';
-        break;
-      default:
-        return;
+  ngOnChanges(changes) {
+    console.log('changes: ', changes.time);
+    if (changes.time.currentValue !== ''){
+      this.time = changes.time.currentValue;
     }
+  }
+
+  ngOnInit() {
   }
 
 }

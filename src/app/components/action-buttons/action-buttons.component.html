@@ -1,2 +1,5 @@
-<button type="button">Start</button>
-<button type="button">Restart</button>
+<button type="button"
+        (click)=" (!isRunning) ? startTimer() : pauseTimer(); isRunning = !isRunning">
+        {{ (!isRunning) ? 'Start' : 'Pause' }}
+</button>
+<button type="button" (click)="restartTimer()">Restart</button>

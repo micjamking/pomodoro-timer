@@ -1,4 +1,5 @@
-<app-tabs>
+<app-timer [time]="currentTime"></app-timer>
+<app-tabs (onSelected)="onSelected($event)">
   <app-tab tabTitle="Pomodoro"></app-tab>
   <app-tab tabTitle="Short Break"></app-tab>
   <app-tab tabTitle="Long Break"></app-tab>
