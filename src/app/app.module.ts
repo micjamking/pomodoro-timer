@@ -15,9 +15,8 @@ import { AboutViewComponent } from './views/about-view/about-view.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HistoryComponent } from './components/history/history.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { TabComponent } from './components/tabs/tab/tab.component';
 import { TimerComponent } from './components/timer/timer.component';
+import { TimerToggleComponent } from './components/timer-toggle/timer-toggle.component';
 import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 
 // Services
@@ -31,10 +30,9 @@ import { TimerService } from './services/timer/timer.service';
     SidebarComponent,
     HistoryComponent,
     SettingsComponent,
-    TabsComponent,
-    TabComponent,
     TimerComponent,
-    ActionButtonsComponent
+    ActionButtonsComponent,
+    TimerToggleComponent
   ],
   imports: [
     BrowserModule,
