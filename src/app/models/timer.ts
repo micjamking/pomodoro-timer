@@ -7,6 +7,8 @@ export class Timer {
     public granularity: number,
     public tickFtns: any[],
     public running: BehaviorSubject<boolean>,
-    public currentTime: BehaviorSubject<Object>
+    public currentTime: BehaviorSubject<Object>,
+    public started: Date,
+    public ended: Date
   ){ }
 }

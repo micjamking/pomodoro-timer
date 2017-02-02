@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import '../../rxjs-operators';
-
 import { Timer } from '../../models/timer';
+import { HistoryService } from '../history/history.service';
 
 @Injectable()
 export class TimerService {
@@ -11,7 +11,9 @@ export class TimerService {
    */
   private time: Timer;
 
-  constructor(){
+  constructor(
+    private historyService: HistoryService
+  ){
     console.log('timerService instantiated');
   }
 
@@ -62,7 +64,9 @@ export class TimerService {
       granularity || 1000,
       [],
       new BehaviorSubject(false),
-      new BehaviorSubject({})
+      new BehaviorSubject({}),
+      null,
+      null
     );
 
     console.log('set timer: ', this.time);
@@ -84,13 +88,13 @@ export class TimerService {
     let time;
     switch (type){
       case 'pomodoro':
-        time = 25;
+        time = 0.2;
         break;
       case 'short-break':
-        time = 5;
+        time = 0.1;
         break;
       case 'long-break':
-        time = 15;
+        time = 0.15;
         break;
     }
 
@@ -151,6 +155,8 @@ export class TimerService {
         diff,
         tempTime;
 
+    this.time.started = this.time.started || new Date();
+
     // Subscribe to currentTime
     // let currentTime = this.getCurrentTime();
 
@@ -168,7 +174,16 @@ export class TimerService {
           setTimeout(timer, this.time.granularity);
         } else {
           diff = 0;
+
           this.time.running.next(false);
+          this.time.ended = new Date();
+          this.historyService.addTimeSegment(
+            this.time.type.getValue(),
+            this.time.started,
+            this.time.ended
+          );
+
+          console.log('timer ended: ', this.time);
         }
 
         this.time.currentTime.next(this.parseTime(diff));
@@ -193,7 +208,7 @@ export class TimerService {
     this.time.running.next(false);
     this.time.duration = this.getSeconds(this.time.currentTime.getValue());
 
-    console.log('paused timer', this.time.currentTime.getValue());
+    console.log('paused timer', this.time);
 
     return this;
   }

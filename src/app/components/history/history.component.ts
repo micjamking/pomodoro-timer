@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { HistoryService } from '../../services/history/history.service';
 
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html'
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  constructor(
+    private historyService: HistoryService
+  ) { }
 
 }
