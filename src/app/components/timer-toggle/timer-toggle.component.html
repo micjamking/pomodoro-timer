@@ -2,6 +2,6 @@
   <ul class="toggle-list">
     <li *ngFor="let type of types" class="toggle-item {{ type }}"
         [class.active]="isTimerType(type)"
-        (click)="setTimer(type)">{{ type }}</li>
+        (click)="setTimer(type)">{{ type | dashToSpace | capitalize }}</li>
   </ul>
 </div>

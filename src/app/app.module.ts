@@ -22,6 +22,10 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
 // Services
 import { TimerService } from './services/timer/timer.service';
 
+// Pipes
+import { DashToSpacePipe } from './pipes/dash-to-space/dash-to-space.pipe';
+import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,9 @@ import { TimerService } from './services/timer/timer.service';
     SettingsComponent,
     TimerComponent,
     ActionButtonsComponent,
-    TimerToggleComponent
+    TimerToggleComponent,
+    DashToSpacePipe,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,
