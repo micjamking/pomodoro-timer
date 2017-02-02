@@ -11,27 +11,63 @@ export class TimerService {
    */
   private time: Timer;
 
-  /**
-   * Type of Timer
-   * @desc ('pomodoro'|'short-break'|'long-break')
-   */
-  public type: BehaviorSubject<string>;
-
   constructor(){
-
     console.log('timerService instantiated');
-
-    this.type = new BehaviorSubject('pomodoro');
   }
 
   /**
-   * Parses seconds in to minutes and seconds
+   * Converts seconds to { 'minutes': 0, 'seconds': 0 }
    */
   private parseTime (seconds: number) : Object {
     return {
       'minutes': ('0' + ((seconds / 60) | 0)).slice(-2),
       'seconds': ('0' + ((seconds % 60) | 0)).slice(-2)
     };
+  }
+
+  /**
+   * Gets timerType
+   */
+  public getType() : string {
+    return this.time.type.getValue();
+  }
+
+  /**
+   * Sets timerType
+   */
+  public setType(type: string) : TimerService {
+    this.time.type.next(type);
+
+    this.setTimer(
+      type,
+      this.time.granularity
+    );
+
+    console.log('current active timer: ', type);
+
+    return this;
+  }
+
+  /**
+   * Sets timer duration and granularity
+   */
+  public setTimer(
+    type: string,
+    granularity?: number
+  ) : TimerService {
+
+    this.time = new Timer(
+      new BehaviorSubject(type),
+      this.getDuration(type),
+      granularity || 1000,
+      [],
+      new BehaviorSubject(false),
+      new BehaviorSubject({})
+    );
+
+    console.log('set timer: ', this.time);
+
+    return this;
   }
 
   /**
@@ -62,46 +98,9 @@ export class TimerService {
   }
 
   /**
-   * Sets timerType
-   */
-  public setType(type: string) : TimerService{
-    this.type.next(type);
-
-    this.setTimer(
-      type,
-      this.time.granularity
-    );
-
-    console.log('current active timer: ', type);
-
-    return this;
-  }
-
-  /**
-   * Sets timer duration and granularity
-   */
-  public setTimer(
-    type: string,
-    granularity?: number
-  ) : TimerService{
-
-    this.time = new Timer(
-      this.getDuration(type),
-      granularity || 1000,
-      [],
-      new BehaviorSubject(false),
-      new BehaviorSubject({})
-    );
-
-    console.log('set timer: ', this.time);
-
-    return this;
-  }
-
-  /**
    * Get current time from timer
    */
-  public getCurrentTime() : Observable<any> {
+  public getCurrentTime() : Observable<string> {
     if (!this.time){ return; }
 
     return this.time.currentTime.map((value) => {
@@ -117,10 +116,10 @@ export class TimerService {
   /**
    * Get current time as percentage of original duration from timer
    */
-  public getCurrentTimePercentage() : Observable<any> {
+  public getCurrentTimePercentage() : Observable<number> {
     if (!this.time){ return; }
 
-    let originalDuration = this.getDuration(this.type.getValue());
+    let originalDuration = this.getDuration(this.time.type.getValue());
 
     return this.time.currentTime.map((value) => {
       if (value['minutes'] && value['seconds']) {
@@ -135,7 +134,7 @@ export class TimerService {
   /**
    * Start Timer
    */
-  public startTimer(): void {
+  public startTimer() : void {
 
     if (this.time.running.getValue()) {
       return;
@@ -190,7 +189,7 @@ export class TimerService {
   /**
    * Pause Timer
    */
-  public pauseTimer() : TimerService{
+  public pauseTimer() : TimerService {
     this.time.running.next(false);
     this.time.duration = this.getSeconds(this.time.currentTime.getValue());
 
@@ -202,10 +201,10 @@ export class TimerService {
   /**
    * Restart Timer
    */
-  public restartTimer() : TimerService{
+  public restartTimer() : TimerService {
 
     this.setTimer(
-      this.type.getValue(),
+      this.time.type.getValue(),
       this.time.granularity
     );
 
@@ -217,7 +216,7 @@ export class TimerService {
   /**
    * Call functions on timer tick
    */
-  public onTick(ftn: Function) : TimerService{
+  public onTick(ftn: Function) : TimerService {
 
     if (typeof ftn === 'function') {
       this.time.tickFtns.push(ftn);
@@ -227,9 +226,9 @@ export class TimerService {
   }
 
   /**
-   * Simple method that returns whether or not the timer has expired
+   * Whether or not the timer is running
    */
-  public isRunning() : BehaviorSubject<any>{
+  public isRunning() : BehaviorSubject<any> {
     if (!this.time){ return; }
 
     return this.time.running;

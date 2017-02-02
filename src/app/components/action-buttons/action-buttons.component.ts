@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { TimerService } from '../../services/timer/timer.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { TimerService } from '../../services/timer/timer.service';
 export class ActionButtonsComponent {
 
   constructor(
+    private titleService: Title,
     private timerService: TimerService
   ) {}
 
@@ -27,6 +29,9 @@ export class ActionButtonsComponent {
    */
   restartTimer(){
     this.timerService.restartTimer();
+    this.timerService.getCurrentTime().subscribe((time) => {
+      this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
+    });
   }
 
 }

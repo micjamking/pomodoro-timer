@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { TimerService } from '../../services/timer/timer.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class TimerToggleComponent {
   public types: Array<string> = [];
 
   constructor(
+    private titleService: Title,
     private timerService: TimerService
   ) {
     this.types = [
@@ -26,7 +28,7 @@ export class TimerToggleComponent {
    * Check if current timer type matches value passed in
    */
   isTimerType(type: string): boolean{
-    return this.timerService.type.getValue() === type;
+    return this.timerService.getType() === type;
   }
 
   /**
@@ -34,6 +36,9 @@ export class TimerToggleComponent {
    */
   setTimer(type: string): void{
     this.timerService.setType(type);
+    this.timerService.getCurrentTime().subscribe((time) => {
+      this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
+    });
   }
 
 }

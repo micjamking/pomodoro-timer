@@ -2,6 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export class Timer {
   constructor(
+    public type: BehaviorSubject<string>,
     public duration: number,
     public granularity: number,
     public tickFtns: any[],
