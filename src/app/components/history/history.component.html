@@ -12,9 +12,9 @@
       <tr *ngFor="let session of historyService.history"
           class="table-row">
         <td [class.check]="session.isPomodoro">{{ session.isPomodoro ? '√' : '' }}</td>
-        <td>{{ session.type }}</td>
-        <td>{{ session.started }}</td>
-        <td>{{ session.ended }}</td>
+        <td>{{ session.type | dashToSpace | capitalize }}</td>
+        <td>{{ session.started | date:'shortTime' }}</td>
+        <td>{{ session.ended | date:'shortTime' }}</td>
       </tr>
     </tbody>
   </table>

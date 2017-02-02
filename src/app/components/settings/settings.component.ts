@@ -19,7 +19,7 @@ export class SettingsComponent {
   /**
    * Refreshes timer on change of input fields
    */
-  refreshTimer(value) {
+  refreshTimer() : void {
     this.timerService.restartTimer();
     this.timerService.getCurrentTime().subscribe((time) => {
       this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
@@ -29,13 +29,9 @@ export class SettingsComponent {
   /**
    * Resets settings and refreshes timer
    */
-  resetSettings(value) {
+  resetSettings() : void {
     this.settingsService.resetSettings();
-    this.timerService.restartTimer();
-
-    this.timerService.getCurrentTime().subscribe((time) => {
-      this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
-    });
+    this.refreshTimer();
   }
 
 }

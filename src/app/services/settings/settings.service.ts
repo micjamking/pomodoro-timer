@@ -13,13 +13,7 @@ export class SettingsService {
   ) {
     console.log('settingsService instantiated');
 
-    this.currentSettings = new Settings(
-      25,
-      5,
-      15,
-      false,
-      'Ding'
-    );
+    this.resetSettings();
   }
 
   /**

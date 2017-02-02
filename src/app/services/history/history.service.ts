@@ -27,13 +27,13 @@ export class HistoryService {
 
     this.history.push(historyObj);
 
-    console.log('time segment added: ', this.history);
+    console.log('historical session added: ', this.history);
   }
 
   public clearAll() : void {
     this.history = [];
 
-    console.log('cleared history: ', this.history);
+    console.log('cleared history sessions: ', this.history);
   }
 
 }

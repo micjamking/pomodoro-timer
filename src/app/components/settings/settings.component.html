@@ -43,7 +43,8 @@
   <h3>Customize Alarms</h3>
 
   <form #customAlarmsForm="ngForm" class="custom-alarms-form">
-    <select name="customAlarmsMenu" class="custom-alarms-menu" ngModel>
+    <select name="customAlarmsMenu" class="custom-alarms-menu"
+            [(ngModel)]="settingsService.currentSettings.alarm">
       <option value="Ding">Ding</option>
     </select>
 
