@@ -22,6 +22,7 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
 // Services
 import { TimerService } from './services/timer/timer.service';
 import { HistoryService } from './services/history/history.service';
+import { SettingsService } from './services/settings/settings.service';
 
 // Pipes
 import { DashToSpacePipe } from './pipes/dash-to-space/dash-to-space.pipe';
@@ -50,7 +51,8 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
   providers: [
     Title,
     TimerService,
-    HistoryService
+    HistoryService,
+    SettingsService
   ],
   bootstrap: [AppComponent]
 })

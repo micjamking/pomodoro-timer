@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import '../../rxjs-operators';
 import { Timer } from '../../models/timer';
 import { HistoryService } from '../history/history.service';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable()
 export class TimerService {
@@ -12,7 +13,8 @@ export class TimerService {
   private time: Timer;
 
   constructor(
-    private historyService: HistoryService
+    private historyService: HistoryService,
+    private settingsService: SettingsService
   ){
     console.log('timerService instantiated');
   }
@@ -88,13 +90,13 @@ export class TimerService {
     let time;
     switch (type){
       case 'pomodoro':
-        time = 0.2;
+        time = this.settingsService.currentSettings.pomodoroTimer;
         break;
       case 'short-break':
-        time = 0.1;
+        time = this.settingsService.currentSettings.shortBreakTimer;
         break;
       case 'long-break':
-        time = 0.15;
+        time = this.settingsService.currentSettings.longBreakTimer;
         break;
     }
 
@@ -130,7 +132,11 @@ export class TimerService {
         let seconds = this.getSeconds(value);
         return 100 - Math.floor((seconds / originalDuration) * 100);
       } else {
-        return 100 - Math.floor((this.time.duration / originalDuration) * 100);
+        if (this.time.duration){
+          return 100 - Math.floor((this.time.duration / originalDuration) * 100);
+        } else {
+          return 0;
+        }
       }
     });
   }
