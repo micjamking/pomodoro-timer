@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { SettingsService } from '../../services/settings/settings.service';
 import { TimerService } from '../../services/timer/timer.service';
+import { CamelizePipe } from '../../pipes/camelize/camelize.pipe';
 
 @Component({
   selector: 'app-settings',
@@ -12,18 +13,10 @@ export class SettingsComponent {
 
   constructor(
     private titleService: Title,
+    private camelizePipe: CamelizePipe,
     private timerService: TimerService,
     private settingsService: SettingsService
   ) { }
-
-  /**
-   * Converts timer names to camelCase
-   */
-  private camelize(str: string) : string {
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-      return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-    }).replace(/-/g, '');
-  }
 
   /**
    * Refreshes timer on change of input fields

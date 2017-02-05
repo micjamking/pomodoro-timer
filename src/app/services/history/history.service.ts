@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { History } from '../../models/history';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable()
 export class HistoryService {
@@ -9,7 +10,9 @@ export class HistoryService {
    */
   public history: Array<History> = [];
 
-  constructor() {
+  constructor(
+    private settingsService: SettingsService
+  ) {
     console.log('historyService instantiated');
   }
 
@@ -19,7 +22,7 @@ export class HistoryService {
     ended: Date
   ) : void {
     let historyObj = new History(
-      type === 'pomodoro',
+      type === this.settingsService.timerTypes[0],
       type,
       started,
       ended

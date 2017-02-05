@@ -7,6 +7,7 @@ import { HistoryService } from '../history/history.service';
 import { SettingsService } from '../settings/settings.service';
 import { DashToSpacePipe } from '../../pipes/dash-to-space/dash-to-space.pipe';
 import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
+import { CamelizePipe } from '../../pipes/camelize/camelize.pipe';
 
 @Injectable()
 export class TimerService {
@@ -18,6 +19,7 @@ export class TimerService {
   constructor(
     @Inject('Window') private window: Window,
     private datePipe: DatePipe,
+    private camelizePipe: CamelizePipe,
     private dashToSpacePipe: DashToSpacePipe,
     private capitalizePipe: CapitalizePipe,
     private historyService: HistoryService,
@@ -95,16 +97,11 @@ export class TimerService {
    */
   private getDuration (type: string) : number {
     let time;
-    switch (type){
-      case 'pomodoro':
-        time = this.settingsService.currentSettings.pomodoroTimer;
-        break;
-      case 'short-break':
-        time = this.settingsService.currentSettings.shortBreakTimer;
-        break;
-      case 'long-break':
-        time = this.settingsService.currentSettings.longBreakTimer;
-        break;
+
+    for (var i = 0; i < this.settingsService.timerTypes.length; i++){
+      if (type === this.settingsService.timerTypes[i]){
+        time = this.settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer'];
+      }
     }
 
     return time * 60;

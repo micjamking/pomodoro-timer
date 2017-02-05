@@ -28,6 +28,7 @@ import { SettingsService } from './services/settings/settings.service';
 // Pipes
 import { DashToSpacePipe } from './pipes/dash-to-space/dash-to-space.pipe';
 import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
+import { CamelizePipe } from './pipes/camelize/camelize.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     ActionButtonsComponent,
     TimerToggleComponent,
     DashToSpacePipe,
-    CapitalizePipe
+    CapitalizePipe,
+    CamelizePipe
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     DatePipe,
     DashToSpacePipe,
     CapitalizePipe,
+    CamelizePipe,
     Title,
     TimerService,
     HistoryService,

@@ -5,8 +5,8 @@
     <ul class="timers-list">
       <li *ngFor="let type of settingsService.timerTypes" class="{{ type }}-timer">
         <label for="{{ type }}-input">{{ type | dashToSpace | capitalize }}</label>
-        <input type="text" placeholder="{{ settingsService.currentSettings[ camelize(type) + 'Timer'] }}" name="{{ type }}Input"
-               [(ngModel)]="settingsService.currentSettings[ camelize(type) + 'Timer']"
+        <input type="text" placeholder="{{ settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer'] }}" name="{{ type }}Input"
+               [(ngModel)]="settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer']"
                (ngModelChange)="refreshTimer($event)" /> min
       </li>
     </ul>
