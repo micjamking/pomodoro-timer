@@ -40,4 +40,8 @@ export class SettingsComponent {
     this.settingsService.playAlarm();
   }
 
+  public saveSettings() : void {
+    this.settingsService.saveSettings();
+  }
+
 }

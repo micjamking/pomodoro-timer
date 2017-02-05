@@ -7,13 +7,14 @@
         <label for="{{ type }}-input">{{ type | dashToSpace | capitalize }}</label>
         <input type="text" placeholder="{{ settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer'] }}" name="{{ type }}Input"
                [(ngModel)]="settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer']"
-               (ngModelChange)="refreshTimer($event)" /> min
+               (ngModelChange)="refreshTimer($event); saveSettings()" /> min
       </li>
     </ul>
 
     <!-- Auto-switch checkbox -->
     <input type="checkbox" name="auto-switch-timers"
-           [(ngModel)]="settingsService.currentSettings.autoswitch" />
+           [(ngModel)]="settingsService.currentSettings.autoswitch"
+           (ngModelChange)="saveSettings()" />
     <label for="auto-switch-timers">Auto-switch timers at end of each interval</label>
 
     <div class="sidebar-action">
@@ -27,7 +28,8 @@
 
   <form #customAlarmsForm="ngForm" class="custom-alarms-form">
     <select name="customAlarmsMenu" class="custom-alarms-menu"
-            [(ngModel)]="settingsService.currentSettings.alarm">
+            [(ngModel)]="settingsService.currentSettings.alarm"
+            (ngModelChange)="saveSettings()">
       <option value="none">--Select an alarm--</option>
       <option *ngFor="let alarm of settingsService.alarmTypes" value="{{ alarm }}">{{ alarm | dashToSpace | capitalize }}</option>
     </select>

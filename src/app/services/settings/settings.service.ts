@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Settings } from '../../models/settings';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class SettingsService {
@@ -31,8 +32,15 @@ export class SettingsService {
   public timerSequenceIndex: number;
 
   constructor(
+    private storageService: StorageService
   ) {
-    console.log('settingsService instantiated');
+    let savedSettings = this.storageService.get('settings');
+
+    if (savedSettings){
+      this.currentSettings = savedSettings;
+    } else {
+      this.resetSettings();
+    }
 
     this.alarmTypes = [
       'beep',
@@ -59,7 +67,7 @@ export class SettingsService {
 
     this.timerSequenceIndex = 0;
 
-    this.resetSettings();
+    console.log('settingsService instantiated');
   }
 
   /**
@@ -73,6 +81,8 @@ export class SettingsService {
       false,
       'zen-bell'
     );
+
+    this.saveSettings();
 
     console.log('reset settings: ', this.currentSettings);
   }
@@ -89,6 +99,13 @@ export class SettingsService {
     audio.play();
 
     console.log('played alarm sound: ', this.currentSettings.alarm);
+  }
+
+  /**
+   * Save settings to local storage
+   */
+  public saveSettings() : void {
+    this.storageService.save('settings', this.currentSettings);
   }
 
 }

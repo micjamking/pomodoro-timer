@@ -24,6 +24,7 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
 import { TimerService } from './services/timer/timer.service';
 import { HistoryService } from './services/history/history.service';
 import { SettingsService } from './services/settings/settings.service';
+import { StorageService } from './services/storage/storage.service';
 
 // Pipes
 import { DashToSpacePipe } from './pipes/dash-to-space/dash-to-space.pipe';
@@ -63,7 +64,8 @@ import { CamelizePipe } from './pipes/camelize/camelize.pipe';
     Title,
     TimerService,
     HistoryService,
-    SettingsService
+    SettingsService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })
