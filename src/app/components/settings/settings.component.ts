@@ -17,9 +17,18 @@ export class SettingsComponent {
   ) { }
 
   /**
+   * Converts timer names to camelCase
+   */
+  private camelize(str: string) : string {
+    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+      return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+    }).replace(/-/g, '');
+  }
+
+  /**
    * Refreshes timer on change of input fields
    */
-  refreshTimer() : void {
+  public refreshTimer() : void {
     this.timerService.restartTimer();
     this.timerService.getCurrentTime().subscribe((time) => {
       this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
@@ -29,7 +38,7 @@ export class SettingsComponent {
   /**
    * Resets settings and refreshes timer
    */
-  resetSettings() : void {
+  public resetSettings() : void {
     this.settingsService.resetSettings();
     this.refreshTimer();
   }

@@ -149,25 +149,12 @@ export class TimerService {
   }
 
   /**
-   * Gets previous timer in list
-   */
-  private getPrevTimer() : string {
-    let index = this.settingsService.timerTypes.indexOf(this.getType());
-
-    if(index >= 0 && index < this.settingsService.timerTypes.length - 1){
-       return this.settingsService.timerTypes[index - 1];
-    }
-  }
-
-  /**
    * Gets next timer in list
    */
   private getNextTimer() : string {
-    let index = this.settingsService.timerTypes.indexOf(this.getType());
+    this.settingsService.timerSequenceIndex = (this.settingsService.timerSequenceIndex === this.settingsService.timerSequence.length - 1) ? 0 : this.settingsService.timerSequenceIndex + 1;
 
-    if(index >= 0 && index < this.settingsService.timerTypes.length - 1){
-       return this.settingsService.timerTypes[index + 1];
-    }
+    return this.settingsService.timerSequence[this.settingsService.timerSequenceIndex];
   }
 
   /**
@@ -192,14 +179,6 @@ export class TimerService {
 
     this.time.started = this.time.started || new Date();
 
-    // Subscribe to currentTime
-    // let currentTime = this.getCurrentTime();
-
-    // Assign current time to temp variable
-    // currentTime.subscribe((value) => {
-    //   tempTime = value;
-    // });
-
     var timer = () => {
 
       diff = this.time.duration - (((Date.now() - start) / 1000) | 0);
@@ -223,17 +202,17 @@ export class TimerService {
             window.alert(timerType + ' ended at ' + this.datePipe.transform(this.time.ended, 'shortTime'));
           }, 1000);
 
-          if (this.settingsService.currentSettings.autoswitch){
-            this.setType(this.getNextTimer());
-            this.startTimer();
-          }
-
           console.log('timer ended: ', this.time);
         }
 
         this.time.currentTime.next(this.parseTime(diff));
 
-        // console.log(tempTime);
+        if (diff === 0 && this.settingsService.currentSettings.autoswitch){
+          setTimeout(() => {
+            this.setType(this.getNextTimer());
+            this.startTimer();
+          }, 1000);
+        }
 
         this.time.tickFtns.forEach(function(ftn) {
           ftn(this.time.currentTime.getValue()['minutes'], this.time.currentTime.getValue()['seconds']);
@@ -280,6 +259,8 @@ export class TimerService {
 
     if (typeof ftn === 'function') {
       this.time.tickFtns.push(ftn);
+
+      console.log('added to function list: ', this.time.tickFtns);
     }
 
     return this;

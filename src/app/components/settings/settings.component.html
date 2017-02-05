@@ -3,27 +3,10 @@
 
   <form #customTimersForm="ngForm" class="custom-timers-form">
     <ul class="timers-list">
-      <!-- Pomodoro Timer -->
-      <li class="pomodoro-timer">
-        <label for="pomodoro-input">Pomodoro</label>
-        <input type="text" placeholder="25" name="pomodoroInput"
-               [(ngModel)]="settingsService.currentSettings.pomodoroTimer"
-               (ngModelChange)="refreshTimer($event)" /> min
-      </li>
-
-      <!-- Short Break Timer -->
-      <li class="short-break-timer">
-        <label for="short-break-input">Short Break</label>
-        <input type="text" placeholder="05" name="shortBreakInput"
-               [(ngModel)]="settingsService.currentSettings.shortBreakTimer"
-               (ngModelChange)="refreshTimer($event)" /> min
-      </li>
-
-      <!-- Long Break Timer -->
-      <li class="long-break-timer">
-        <label for="long-break-input">Long Break</label>
-        <input type="text" placeholder="15" name="longBreakInput"
-               [(ngModel)]="settingsService.currentSettings.longBreakTimer"
+      <li *ngFor="let type of settingsService.timerTypes" class="{{ type }}-timer">
+        <label for="{{ type }}-input">{{ type | dashToSpace | capitalize }}</label>
+        <input type="text" placeholder="{{ settingsService.currentSettings[ camelize(type) + 'Timer'] }}" name="{{ type }}Input"
+               [(ngModel)]="settingsService.currentSettings[ camelize(type) + 'Timer']"
                (ngModelChange)="refreshTimer($event)" /> min
       </li>
     </ul>
