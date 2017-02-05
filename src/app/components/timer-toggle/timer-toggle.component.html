@@ -1,0 +1,7 @@
+<div class="timer-toggle">
+  <ul class="toggle-list">
+    <li *ngFor="let type of settingsService.timerTypes" class="toggle-item {{ type }}"
+        [class.active]="isTimerType(type)"
+        (click)="setTimer(type)">{{ type | dashToSpace | capitalize }}</li>
+  </ul>
+</div>

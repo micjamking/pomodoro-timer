@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TimerService } from '../../services/timer/timer.service';
 import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
-  selector: 'app-timer-view',
-  templateUrl: './timer-view.component.html'
+  selector: 'app-timer-toggle',
+  templateUrl: './timer-toggle.component.html'
 })
-export class TimerViewComponent implements OnInit {
+export class TimerToggleComponent {
+
+  /**
+   * Timer types
+   */
+  public types: Array<string> = [];
 
   constructor(
     private titleService: Title,
@@ -15,8 +20,18 @@ export class TimerViewComponent implements OnInit {
     private settingsService: SettingsService
   ) { }
 
-  ngOnInit() {
-    this.timerService.setTimer(this.settingsService.timerTypes[0]);
+  /**
+   * Check if current timer type matches value passed in
+   */
+  isTimerType(type: string): boolean{
+    return this.timerService.getType() === type;
+  }
+
+  /**
+   * Set timer type
+   */
+  setTimer(type: string): void{
+    this.timerService.setType(type);
     this.timerService.getCurrentTime().subscribe((time) => {
       this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
     });

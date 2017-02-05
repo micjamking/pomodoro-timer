@@ -9,16 +9,17 @@
       </tr>
     </thead>
     <tbody class="table-body">
-      <tr class="table-row">
-        <td class="check">√</td>
-        <td>Pomodoro</td>
-        <td>10:25am</td>
-        <td>10:50am</td>
+      <tr *ngFor="let session of historyService.history"
+          class="table-row">
+        <td [class.check]="session.isPomodoro">{{ session.isPomodoro ? '√' : '' }}</td>
+        <td>{{ session.type | dashToSpace | capitalize }}</td>
+        <td>{{ session.started | date:'shortTime' }}</td>
+        <td>{{ session.ended | date:'shortTime' }}</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <div class="sidebar-action">
-  <button type="button">Clear History</button>
+  <button type="button" (click)="historyService.clearAll()">Clear History</button>
 <div>

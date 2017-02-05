@@ -1,7 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DatePipe } from '@angular/common';
 
 // Modules
 import { AppRoutesModule } from './app.routes';
@@ -15,10 +16,20 @@ import { AboutViewComponent } from './views/about-view/about-view.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HistoryComponent } from './components/history/history.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { TabComponent } from './components/tabs/tab/tab.component';
 import { TimerComponent } from './components/timer/timer.component';
+import { TimerToggleComponent } from './components/timer-toggle/timer-toggle.component';
 import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
+
+// Services
+import { TimerService } from './services/timer/timer.service';
+import { HistoryService } from './services/history/history.service';
+import { SettingsService } from './services/settings/settings.service';
+import { StorageService } from './services/storage/storage.service';
+
+// Pipes
+import { DashToSpacePipe } from './pipes/dash-to-space/dash-to-space.pipe';
+import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
+import { CamelizePipe } from './pipes/camelize/camelize.pipe';
 
 @NgModule({
   declarations: [
@@ -28,10 +39,12 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     SidebarComponent,
     HistoryComponent,
     SettingsComponent,
-    TabsComponent,
-    TabComponent,
     TimerComponent,
-    ActionButtonsComponent
+    ActionButtonsComponent,
+    TimerToggleComponent,
+    DashToSpacePipe,
+    CapitalizePipe,
+    CamelizePipe
   ],
   imports: [
     BrowserModule,
@@ -39,7 +52,21 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     HttpModule,
     AppRoutesModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'Window',
+      useValue: window
+    },
+    DatePipe,
+    DashToSpacePipe,
+    CapitalizePipe,
+    CamelizePipe,
+    Title,
+    TimerService,
+    HistoryService,
+    SettingsService,
+    StorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
