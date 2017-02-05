@@ -28,11 +28,14 @@
   <form #customAlarmsForm="ngForm" class="custom-alarms-form">
     <select name="customAlarmsMenu" class="custom-alarms-menu"
             [(ngModel)]="settingsService.currentSettings.alarm">
-      <option value="Ding">Ding</option>
+      <option value="none">--Select an alarm--</option>
+      <option *ngFor="let alarm of settingsService.alarmTypes" value="{{ alarm }}">{{ alarm | dashToSpace | capitalize }}</option>
     </select>
 
     <div class="sidebar-action">
-      <a class="preview-alarm">Preview</a>
+      <button type="button" class="preview-alarm"
+              [disabled]="settingsService.currentSettings.alarm === 'none'"
+              (click)="previewAlarm()">Preview</button>
     </div>
   </form>
 </div>

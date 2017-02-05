@@ -36,4 +36,8 @@ export class SettingsComponent {
     this.refreshTimer();
   }
 
+  public previewAlarm() : void {
+    this.settingsService.playAlarm();
+  }
+
 }

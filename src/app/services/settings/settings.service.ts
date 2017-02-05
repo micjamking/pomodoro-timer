@@ -10,6 +10,11 @@ export class SettingsService {
   public currentSettings: Settings;
 
   /**
+   * Alarm types
+   */
+  public alarmTypes: Array<string> = [];
+
+  /**
    * Timer types
    */
   public timerTypes: Array<string> = [];
@@ -28,6 +33,12 @@ export class SettingsService {
   constructor(
   ) {
     console.log('settingsService instantiated');
+
+    this.alarmTypes = [
+      'beep',
+      'siren',
+      'zen-bell'
+    ];
 
     this.timerTypes = [
       'pomodoro',
@@ -60,10 +71,24 @@ export class SettingsService {
       5,
       15,
       false,
-      'Ding'
+      'zen-bell'
     );
 
     console.log('reset settings: ', this.currentSettings);
+  }
+
+  /**
+   * Plays alarm sound
+   */
+  public playAlarm () : void {
+    if (this.currentSettings.alarm === "none") { return; }
+
+    var audio = new Audio();
+    audio.src = "/assets/audio/" + this.currentSettings.alarm + ".mp3";
+    audio.load();
+    audio.play();
+
+    console.log('played alarm sound: ', this.currentSettings.alarm);
   }
 
 }
