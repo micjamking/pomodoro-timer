@@ -9,9 +9,20 @@ export class SettingsService {
    */
   public currentSettings: Settings;
 
+  /**
+   * Timer types
+   */
+  public timerTypes: Array<string> = [];
+
   constructor(
   ) {
     console.log('settingsService instantiated');
+
+    this.timerTypes = [
+      'pomodoro',
+      'short-break',
+      'long-break'
+    ];
 
     this.resetSettings();
   }

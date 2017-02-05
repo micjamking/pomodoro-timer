@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Observable, BehaviorSubject } from 'rxjs';
 import '../../rxjs-operators';
 import { Timer } from '../../models/timer';
 import { HistoryService } from '../history/history.service';
 import { SettingsService } from '../settings/settings.service';
+import { DashToSpacePipe } from '../../pipes/dash-to-space/dash-to-space.pipe';
+import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
 
 @Injectable()
 export class TimerService {
@@ -13,6 +16,10 @@ export class TimerService {
   private time: Timer;
 
   constructor(
+    @Inject('Window') private window: Window,
+    private datePipe: DatePipe,
+    private dashToSpacePipe: DashToSpacePipe,
+    private capitalizePipe: CapitalizePipe,
     private historyService: HistoryService,
     private settingsService: SettingsService
   ){
@@ -30,14 +37,14 @@ export class TimerService {
   }
 
   /**
-   * Gets timerType
+   * Gets current timer type
    */
   public getType() : string {
     return this.time.type.getValue();
   }
 
   /**
-   * Sets timerType
+   * Sets time type
    */
   public setType(type: string) : TimerService {
     this.time.type.next(type);
@@ -142,6 +149,28 @@ export class TimerService {
   }
 
   /**
+   * Gets previous timer in list
+   */
+  private getPrevTimer() : string {
+    let index = this.settingsService.timerTypes.indexOf(this.getType());
+
+    if(index >= 0 && index < this.settingsService.timerTypes.length - 1){
+       return this.settingsService.timerTypes[index - 1];
+    }
+  }
+
+  /**
+   * Gets next timer in list
+   */
+  private getNextTimer() : string {
+    let index = this.settingsService.timerTypes.indexOf(this.getType());
+
+    if(index >= 0 && index < this.settingsService.timerTypes.length - 1){
+       return this.settingsService.timerTypes[index + 1];
+    }
+  }
+
+  /**
    * Start Timer
    */
   public startTimer() : void {
@@ -188,6 +217,16 @@ export class TimerService {
             this.time.started,
             this.time.ended
           );
+
+          setTimeout(() => {
+            let timerType = this.capitalizePipe.transform(this.dashToSpacePipe.transform(this.time.type.getValue()));
+            window.alert(timerType + ' ended at ' + this.datePipe.transform(this.time.ended, 'shortTime'));
+          }, 1000);
+
+          if (this.settingsService.currentSettings.autoswitch){
+            this.setType(this.getNextTimer());
+            this.startTimer();
+          }
 
           console.log('timer ended: ', this.time);
         }

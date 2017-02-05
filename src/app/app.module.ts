@@ -2,6 +2,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DatePipe } from '@angular/common';
 
 // Modules
 import { AppRoutesModule } from './app.routes';
@@ -49,6 +50,13 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     AppRoutesModule
   ],
   providers: [
+    {
+      provide: 'Window',
+      useValue: window
+    },
+    DatePipe,
+    DashToSpacePipe,
+    CapitalizePipe,
     Title,
     TimerService,
     HistoryService,

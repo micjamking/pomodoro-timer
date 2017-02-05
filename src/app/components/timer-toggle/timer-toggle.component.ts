@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TimerService } from '../../services/timer/timer.service';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
   selector: 'app-timer-toggle',
@@ -15,14 +16,9 @@ export class TimerToggleComponent {
 
   constructor(
     private titleService: Title,
-    private timerService: TimerService
-  ) {
-    this.types = [
-      'pomodoro',
-      'short-break',
-      'long-break'
-    ];
-  }
+    private timerService: TimerService,
+    private settingsService: SettingsService
+  ) { }
 
   /**
    * Check if current timer type matches value passed in
