@@ -188,11 +188,16 @@ export class TimerService {
 
           this.time.running.next(false);
           this.time.ended = new Date();
+
           this.historyService.addTimeSegment(
             this.time.type.getValue(),
             this.time.started,
             this.time.ended
           );
+
+          if (this.settingsService.currentSettings.alarm !== 'none'){
+            this.settingsService.playAlarm();
+          }
 
           setTimeout(() => {
             let timerType = this.capitalizePipe.transform(this.dashToSpacePipe.transform(this.time.type.getValue()));
