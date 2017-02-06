@@ -81,7 +81,7 @@
       cursor: pointer;
 
       &:checked {
-        background-image: url('/assets/images/icons/check.png');
+        background-image: url('assets/images/icons/check.png');
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -117,7 +117,7 @@
     font-size: em-calc(12px);
     color: $platinum-50;
     margin-bottom: em-calc(10px);
-    background-image: url('/assets/images/icons/triangle.png');
+    background-image: url('assets/images/icons/triangle.png');
     background-position: 95% center;
     background-repeat: no-repeat;
     background-size: 6px 5px;
@@ -152,7 +152,7 @@
       content: '';
       width: em-calc(12px);
       height: em-calc(12px);
-      background-image: url('/assets/images/icons/volume-up.png');
+      background-image: url('assets/images/icons/volume-up.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
