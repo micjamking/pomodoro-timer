@@ -24,6 +24,8 @@
     color: $dark-orchid;
     text-transform: uppercase;
     cursor: pointer;
+		transition: all 200ms ease-in-out;
+    opacity: 0.2;
 
     &::before {
       display: block;
@@ -60,8 +62,13 @@
       }
     }
 
-    &.active {
-      border-bottom: em-calc(4px) solid $dark-orchid;
+    &.active{
+      box-shadow: 0px 4px 0 0 $dark-orchid;
+    }
+
+    &.active,
+    &:hover {
+      opacity: 1;
     }
   }
 }

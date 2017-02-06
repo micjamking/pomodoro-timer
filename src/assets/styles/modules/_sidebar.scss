@@ -29,4 +29,8 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
+    .sidebar {
+      @include animation('fade-in', $iteration-count: 1, $duration: 0.5s);
+    }
 }

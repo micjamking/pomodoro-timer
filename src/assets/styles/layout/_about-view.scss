@@ -1,0 +1,88 @@
+/**
+ *
+ */
+
+.about-view {
+  height: 100%;
+  position: relative;
+  margin: em-calc(25px) em-calc(60px);
+
+  h1 {
+    font-family: $sans-serif;
+    font-size: em-calc(36px);
+    font-weight: 300;
+    color: $dark-orchid;
+    margin-bottom: em-calc(25px);
+  }
+
+  .main-section {
+
+    p,
+    ol,
+    strong {
+      display: block;
+      margin-bottom: em-calc(15px);
+    }
+
+    p,
+    li {
+      font-family: $sans-serif;
+      font-weight: 300;
+      font-size: em-calc(14px);
+      color: $platinum;
+      line-height: 1.5;
+    }
+
+    strong {
+      font-family: $sans-serif;
+      font-weight: 700;
+      font-size: em-calc(14px);
+      color: $dark-orchid;
+      letter-spacing: 0;
+      line-height: 1.5;
+    }
+
+    ol {
+      margin-left: em-calc(25px);
+    }
+
+    li {
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: em-calc(30px);
+      width: 100%;
+      text-align: center;
+
+      .copyright {
+        font-family: $sans-serif;
+        font-weight: 500;
+        font-size: em-calc(10px);
+        color: $platinum;
+
+        a,
+        .keyword {
+          color: $dark-orchid;
+          text-decoration: none;
+        }
+
+        .keyword {
+          text-indent: -9999em;
+          display: inline-block;
+          width: 12px;
+          background-image: url('assets/images/icons/heart.png');
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+
+    .share-links {
+      display: flex;
+    }
+  }
+}

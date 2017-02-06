@@ -9,10 +9,11 @@ body {
 }
 
 app-root {
-  display: none;
+  transition: all 0.5s ease('material');
+  opacity: 0;
 
   &.active {
-    display: block;
+    opacity: 1;
   }
 }
 
@@ -35,4 +36,29 @@ body {
   box-shadow: 0 10px 40px 0 rgba(0,0,0,0.20);
   border-radius: 10px;
   transform: translate(-50%, -50%);
+}
+
+.about-view,
+.timer-view {
+  @include animation('fade-in', $iteration-count: 1, $duration: 0.5s);
+}
+
+.application-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	width: 3.75em;
+	height: 4.5em;
+  text-align: center;
+  opacity: 0;
+  transition: all 200ms ease-in-out;
+
+  &.active {
+    opacity: 1;
+  }
+
+  .preloader-text {
+    color: $white;
+  }
 }
