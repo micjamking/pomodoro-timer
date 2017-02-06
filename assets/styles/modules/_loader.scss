@@ -1,0 +1,13 @@
+/**
+ * Application Preloader
+ */
+
+ 
+.application-loader {
+  display: none;
+
+  &.active {
+    display: inherit;
+  }
+
+}

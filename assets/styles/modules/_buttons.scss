@@ -1,0 +1,106 @@
+/**
+ * Button Styles
+ */
+
+.help-icon {
+  display: block;
+  width: em-calc(18px);
+  height: em-calc(18px);
+  text-indent: -9999em;
+
+  &.about {
+    background-image: url('/assets/images/icons/help.png');
+    background-size: contain;
+  }
+
+  &.timer {
+    background-image: url('/assets/images/icons/help-active.png');
+    background-size: contain;
+  }
+}
+
+.action-buttons {
+  width: em-calc(130px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  .action-button {
+    -webkit-appearance: none;
+    appearance: none;
+    width: em-calc(44px);
+    height: em-calc(44px);
+    border-radius: 100%;
+    background-color: #FFFFFF;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    box-shadow: 0 em-calc(2px) em-calc(10px) 0 rgba(0, 0, 0, 0.10);
+    text-indent: -9999em;
+    outline: none;
+    cursor: pointer;
+
+    &::focus {
+      outline: none;
+    }
+
+    &.play {
+      background-image: url('/assets/images/icons/play.png');
+      background-size: em-calc(13px) em-calc(15px);
+    }
+
+    &.pause {
+      background-image: url('/assets/images/icons/pause.png');
+      background-size: em-calc(14px) em-calc(15px);
+    }
+
+    &.restart {
+      background-image: url('/assets/images/icons/restart.png');
+      background-size: em-calc(16px) em-calc(18px);
+    }
+  }
+}
+
+.sidebar-action {
+  text-align: center;
+
+  .sidebar-button {
+    -webkit-appearance: none;
+    appearance: none;
+    padding: em-calc(15px) em-calc(25px);
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-family: $sans-serif;
+    font-size: em-calc(14px);
+    font-weight: 400;
+    color: $platinum;
+    @include input-background;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.sidebar-toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  width: em-calc(20px);
+  height: em-calc(20px);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-indent: -9999em;
+  cursor: pointer;
+
+  &.settings {
+    background-image: url('/assets/images/icons/gear.png');
+    background-size: contain;
+  }
+
+  &.history {
+    background-image: url('/assets/images/icons/history.png');
+    background-size: contain;
+  }
+}

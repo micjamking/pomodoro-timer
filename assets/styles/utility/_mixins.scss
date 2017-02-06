@@ -1,0 +1,43 @@
+/*
+ * Mixins
+ */
+
+// Clearfix
+@mixin cf {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// Animation
+@mixin animation(
+  $name,
+  $duration: $duration,
+  $timing-function: $timing-function,
+  $delay: $delay,
+  $iteration-count: $iteration-count,
+  $direction: $direction,
+  $fill-mode: $fill-mode,
+  $play-state: $play-state
+){
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-timing-function: $timing-function;
+  animation-delay: $delay;
+  animation-iteration-count: $iteration-count;
+  animation-direction: $direction;
+  animation-fill-mode: $fill-mode;
+  animation-play-state: $play-state;
+}
+
+@mixin input-background {
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.05);
+  border-radius: 2px;
+}

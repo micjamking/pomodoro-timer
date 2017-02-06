@@ -1,0 +1,38 @@
+/**
+ * Common / Global Styles
+ */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+app-root {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+body {
+  position: relative;
+
+  &.light {
+    background-image: linear-gradient(-135deg, #884EC6 0%, #A059CD 37%, #B363D2 67%, #C96DD8 100%);
+  }
+}
+
+.container {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: em-calc(940px);
+  height: em-calc(656px);
+  background: #FFFFFF;
+  box-shadow: 0 10px 40px 0 rgba(0,0,0,0.20);
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
