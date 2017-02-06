@@ -9,12 +9,12 @@
   text-indent: -9999em;
 
   &.about {
-    background-image: url('/assets/images/icons/help.png');
+    background-image: url('assets/images/icons/help.png');
     background-size: contain;
   }
 
   &.timer {
-    background-image: url('/assets/images/icons/help-active.png');
+    background-image: url('assets/images/icons/help-active.png');
     background-size: contain;
   }
 }
@@ -45,17 +45,17 @@
     }
 
     &.play {
-      background-image: url('/assets/images/icons/play.png');
+      background-image: url('assets/images/icons/play.png');
       background-size: em-calc(13px) em-calc(15px);
     }
 
     &.pause {
-      background-image: url('/assets/images/icons/pause.png');
+      background-image: url('assets/images/icons/pause.png');
       background-size: em-calc(14px) em-calc(15px);
     }
 
     &.restart {
-      background-image: url('/assets/images/icons/restart.png');
+      background-image: url('assets/images/icons/restart.png');
       background-size: em-calc(16px) em-calc(18px);
     }
   }
@@ -95,12 +95,12 @@
   cursor: pointer;
 
   &.settings {
-    background-image: url('/assets/images/icons/gear.png');
+    background-image: url('assets/images/icons/gear.png');
     background-size: contain;
   }
 
   &.history {
-    background-image: url('/assets/images/icons/history.png');
+    background-image: url('assets/images/icons/history.png');
     background-size: contain;
   }
 }

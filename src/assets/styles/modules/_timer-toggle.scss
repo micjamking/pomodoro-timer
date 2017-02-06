@@ -39,7 +39,7 @@
       &::before {
         width: em-calc(20px);
         height: em-calc(16px);
-        background-image: url('/assets/images/icons/task.png');
+        background-image: url('assets/images/icons/task.png');
       }
     }
 
@@ -47,7 +47,7 @@
       &::before {
         width: em-calc(20px);
         height: em-calc(18px);
-        background-image: url('/assets/images/icons/chat.png');
+        background-image: url('assets/images/icons/chat.png');
       }
     }
 
@@ -56,7 +56,7 @@
         width: em-calc(21px);
         height: em-calc(24px);
         transform: translateX(-50%) translateY(-30%);
-        background-image: url('/assets/images/icons/hot-coffee.png');
+        background-image: url('assets/images/icons/hot-coffee.png');
       }
     }
 
