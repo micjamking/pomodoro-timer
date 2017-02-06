@@ -115,7 +115,7 @@
     padding: em-calc(7px) em-calc(10px);
     font-family: $sans-serif;
     font-size: em-calc(12px);
-    color: $platinum;
+    color: $platinum-50;
     margin-bottom: em-calc(10px);
     background-image: url('/assets/images/icons/triangle.png');
     background-position: 95% center;
@@ -138,6 +138,11 @@
     background: none;
     cursor: pointer;
     transform: translate(-10%, 0);
+
+    &[disabled] {
+      opacity: 0.5;
+      cursor: auto;
+    }
 
     &::after {
       position: absolute;
