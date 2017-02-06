@@ -15,3 +15,47 @@
     display: initial;
   }
 }
+
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+	font-size: 20px;
+	display: block;
+	width: 3.75em;
+	height: 4.25em;
+	margin-left: -1.875em;
+  margin-top: 0;
+	transform-origin: center center;
+	transform: rotateY(180deg) rotateZ(-60deg);
+
+	.slice{
+		border-top: 1.125em solid transparent;
+		border-right: none;
+		border-bottom: 1em solid transparent;
+		border-left: 1.875em solid $white;
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		transform-origin: left bottom;
+		border-radius: 3px 3px 0 0;
+	}
+
+	@for $i from 1 through 6 {
+	  .slice:nth-child(#{$i}) {
+	  	transform: rotateZ(60* $i + deg) rotateY(0deg) rotateX(0);
+	  	animation: .15s linear .9 - $i*.08s preload-hide-#{$i} both 1;
+	  }
+	}
+
+
+	&.loading {
+		animation: 2s preload-flip steps(2) infinite both;
+		@for $i from 1 through 6 {
+		  .slice:nth-child(#{$i}) {
+		  	transform: rotateZ(60* $i + deg) rotateY(90deg) rotateX(0);
+		  	animation: 2s preload-cycle-#{$i} linear infinite both;
+		  }
+		}
+	}
+}

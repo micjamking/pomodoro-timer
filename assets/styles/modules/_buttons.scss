@@ -39,9 +39,14 @@
     text-indent: -9999em;
     outline: none;
     cursor: pointer;
+		transition: all 200ms ease-in-out;
 
     &::focus {
       outline: none;
+    }
+
+    &:hover {
+			transform: translateY(-5px);
     }
 
     &.play {
@@ -75,10 +80,18 @@
     font-size: em-calc(14px);
     font-weight: 400;
     color: $platinum;
+		transition: all 200ms ease-in-out;
     @include input-background;
+    position: relative;
+    cursor: pointer;
+    @include material-button;
 
     &:focus {
       outline: none;
+    }
+
+    &:hover {
+			transform: translateY(0);
     }
   }
 }
@@ -91,16 +104,57 @@
   border: none;
   outline: none;
   background-color: transparent;
+  background-size: contain;
   text-indent: -9999em;
   cursor: pointer;
+  transition: all 200ms ease-in-out;
 
   &.settings {
     background-image: url('assets/images/icons/gear.png');
-    background-size: contain;
   }
 
   &.history {
     background-image: url('assets/images/icons/history.png');
-    background-size: contain;
+  }
+}
+
+.share-links {
+  .button {
+    -webkit-appearance: none;
+    appearance: none;
+    width: em-calc(44px);
+    height: em-calc(44px);
+    margin-right: em-calc(20px);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    @include input-background;
+    border-radius: 100%;
+    transition: all 200ms ease-in-out;
+
+    &.google-plus {
+      background-image: url('assets/images/icons/google-plus.png');
+      background-size: 26px 20px;
+    }
+
+    &.facebook {
+      background-image: url('assets/images/icons/facebook.png');
+      background-size: 10px 20px;
+    }
+
+    &.twitter {
+      background-image: url('assets/images/icons/twitter.png');
+      background-size: 20px;
+    }
+
+    &:hover {
+			transform: translateY(-5px);
+    }
+
+    > * {
+      visibility: hidden;
+    }
   }
 }
