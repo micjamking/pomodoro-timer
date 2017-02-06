@@ -1,0 +1,67 @@
+/**
+ * Timer Component
+ */
+
+.timer {
+
+  .timer-countdown {
+    margin-top: em-calc(60px);
+
+    h1 {
+      display: block;
+      width: em-calc(600px);
+      margin: 0 auto em-calc(30px);
+      font-family: $timer-font;
+      font-size: em-calc(220px);
+      line-height: em-calc(251px);
+      color: $dark-orchid;
+    }
+  }
+
+  .timer-progress {
+    margin-bottom: em-calc(60px);
+    padding: 0 em-calc(40px);
+
+    progress[value] {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      position: relative;
+      width: 100%;
+      height: em-calc(2px);
+      box-shadow: 0 em-calc(4px) em-calc(5px) 0 rgba(0,0,0,0.25);
+
+      &::before,
+      &::after {
+        display: block;
+        content: '';
+        width: em-calc(8px);
+        height: em-calc(8px);
+        position: absolute;
+        top: 50%;
+        border-radius: 100%;
+        background: #8D3CB7;
+        box-shadow: 0 em-calc(2px) em-calc(10px) 0 rgba(0,0,0,0.10);
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        left: 0;
+      }
+
+      &::after {
+        right: 0;
+      }
+
+      &::-webkit-progress-bar {
+        background-image: linear-gradient(90deg, #C96DD8 0%, #7E49C3 100%);
+        border-radius: em-calc(2px);
+      }
+
+      &::-webkit-progress-value {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+  }
+}

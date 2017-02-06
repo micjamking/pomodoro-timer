@@ -1,8 +1,9 @@
 <aside class="sidebar-detail">
-  <h2>{{ !sidebarView ? 'History' : 'Settings' }}</h2>
+  <h2 class="subheader">{{ !sidebarView ? 'History' : 'Settings' }}</h2>
   <app-history [hidden]="sidebarView"></app-history>
   <app-settings [hidden]="!sidebarView"></app-settings>
   <button type="button"
+          class="sidebar-toggle {{ sidebarView ? 'history' : 'settings' }}"
           (click)="sidebarView = !sidebarView">
           {{ sidebarView ? 'History' : 'Settings' }}
   </button>

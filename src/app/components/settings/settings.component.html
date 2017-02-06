@@ -5,20 +5,28 @@
     <ul class="timers-list">
       <li *ngFor="let type of settingsService.timerTypes" class="{{ type }}-timer">
         <label for="{{ type }}-input">{{ type | dashToSpace | capitalize }}</label>
-        <input type="text" placeholder="{{ settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer'] }}" name="{{ type }}Input"
-               [(ngModel)]="settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer']"
-               (ngModelChange)="refreshTimer($event); saveSettings()" /> min
+        <div class="input-container">
+          <input type="text" placeholder="{{ settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer'] }}"
+                 name="{{ type }}Input" id="{{ type }}-input"
+                 [(ngModel)]="settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer']"
+                 (ngModelChange)="refreshTimer($event); saveSettings()" /> min
+        </div>
       </li>
     </ul>
 
     <!-- Auto-switch checkbox -->
-    <input type="checkbox" name="auto-switch-timers"
-           [(ngModel)]="settingsService.currentSettings.autoswitch"
-           (ngModelChange)="saveSettings()" />
-    <label for="auto-switch-timers">Auto-switch timers at end of each interval</label>
+    <div class="checkbox-container">
+      <input type="checkbox" name="auto-switch-timers"
+             id="auto-switch-timers"
+             [(ngModel)]="settingsService.currentSettings.autoswitch"
+             (ngModelChange)="saveSettings()" />
+      <label for="auto-switch-timers">Auto-switch timers at end of each interval</label>
+    </div>
 
     <div class="sidebar-action">
-      <button type="button" (click)="resetSettings()">Reset</button>
+      <button type="button"
+              class="sidebar-button"
+              (click)="resetSettings()">Reset</button>
     </div>
   </form>
 </div>
