@@ -179,7 +179,7 @@ export class TimerService {
 
     this.time.started = this.time.started || new Date();
 
-    this.worker = new Worker('timer.worker.js');
+    this.worker = new Worker('assets/timer.worker.js');
 
     var timer = () => {
 
