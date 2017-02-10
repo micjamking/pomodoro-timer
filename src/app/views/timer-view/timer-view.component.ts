@@ -17,9 +17,6 @@ export class TimerViewComponent implements OnInit {
 
   ngOnInit() {
     this.timerService.setTimer(this.settingsService.timerTypes[0]);
-    this.timerService.getCurrentTime().subscribe((time) => {
-      this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
-    });
   }
 
 }

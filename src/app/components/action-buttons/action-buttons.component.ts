@@ -29,9 +29,6 @@ export class ActionButtonsComponent {
    */
   restartTimer(){
     this.timerService.restartTimer();
-    this.timerService.getCurrentTime().subscribe((time) => {
-      this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
-    });
   }
 
 }

@@ -22,7 +22,7 @@
   </div>
 
   <div class="sidebar-action">
-    <button type="button"
+    <button *ngIf="historyService.history.length > 0" type="button"
             class="sidebar-button"
             (click)="historyService.clearAll()">Clear History</button>
   <div>
