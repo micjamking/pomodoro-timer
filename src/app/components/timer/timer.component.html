@@ -5,5 +5,6 @@
 
   <div class="timer-progress">
     <progress [value]="timerService.getCurrentTimePercentage() | async" max="100"></progress>
+    <span class="timer-progress-marker" [style.width.px]="((timerService.getCurrentTimePercentage() | async) / 100) * 580"></span>
   </div>
 </div>

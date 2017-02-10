@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 import { Observable, BehaviorSubject } from 'rxjs';
 import '../../rxjs-operators';
@@ -24,10 +25,10 @@ export class TimerService {
     private camelizePipe: CamelizePipe,
     private dashToSpacePipe: DashToSpacePipe,
     private capitalizePipe: CapitalizePipe,
+    private titleService: Title,
     private historyService: HistoryService,
     private settingsService: SettingsService
   ){
-    // this.timerWebWorker();
     console.log('timerService instantiated');
   }
 
@@ -82,6 +83,11 @@ export class TimerService {
       null,
       null
     );
+
+
+    this.getCurrentTime().subscribe((time) => {
+      this.titleService.setTitle(time);
+    });
 
     console.log('set timer: ', this.time);
 
@@ -222,7 +228,7 @@ export class TimerService {
             setTimeout(() => {
               this.setType(this.getNextTimer());
               this.startTimer();
-            }, 1000);
+            }, 2000);
           }
 
           this.time.tickFtns.forEach(function(ftn) {

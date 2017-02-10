@@ -32,9 +32,6 @@ export class TimerToggleComponent {
    */
   setTimer(type: string): void{
     this.timerService.setType(type);
-    this.timerService.getCurrentTime().subscribe((time) => {
-      this.titleService.setTitle( time + ' | Sauce: A Pomodoro Timer' );
-    });
   }
 
 }
