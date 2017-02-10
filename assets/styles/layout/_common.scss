@@ -21,7 +21,7 @@ body {
   position: relative;
 
   &.light {
-    background-image: linear-gradient(-135deg, #884EC6 0%, #A059CD 37%, #B363D2 67%, #C96DD8 100%);
+    background-image: linear-gradient(135deg, #884EC6 0%, #A059CD 37%, #B363D2 67%, #C96DD8 100%);
   }
 }
 
