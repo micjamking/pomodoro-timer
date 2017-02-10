@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 // Utility
-@import 'assets/styles/utility/variables';
 @import 'assets/styles/utility/functions';
 @import 'assets/styles/utility/mixins';
+@import 'assets/styles/utility/variables';
 @import 'assets/styles/utility/classes';
 
 // Base
@@ -13,8 +13,14 @@
 
 // Layout
 @import 'assets/styles/layout/common';
-@import 'assets/styles/layout/grid';
+@import 'assets/styles/layout/about-view';
 
 // Modules
 @import 'assets/styles/modules/buttons';
 @import 'assets/styles/modules/loader';
+@import 'assets/styles/modules/master';
+@import 'assets/styles/modules/sidebar';
+@import 'assets/styles/modules/settings';
+@import 'assets/styles/modules/history';
+@import 'assets/styles/modules/timer';
+@import 'assets/styles/modules/timer-toggle';

@@ -16,7 +16,7 @@ export function Main() {
   window.setTimeout(()=> {
     app.classList.add('active');
     loader.classList.remove('active');
-  }, 100);
+  }, 2000);
 
   platformBrowserDynamic().bootstrapModule(AppModule);
 }

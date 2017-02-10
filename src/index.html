@@ -20,11 +20,21 @@
   <title>Sauce: A Pomodoro Timer</title>
 
 </head>
-<body>
+<body class="light">
   <!-- Application Root -->
   <app-root></app-root>
 
   <!-- Application Preloader -->
-  <div class="application-loader active">Loading...</div>
+  <div class="application-loader active">
+    <span class="preloader-text">Loading...</span>
+    <div class="preloader loading">
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+    </div>
+  </div>
 </body>
 </html>

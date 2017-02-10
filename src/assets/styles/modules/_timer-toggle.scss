@@ -1,0 +1,74 @@
+/**
+ * Timer Toggle Styles
+ */
+
+.timer-toggle {
+  margin: 0 auto em-calc(50px);
+  width: em-calc(420px);
+
+  .toggle-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+  }
+
+  .toggle-item {
+    position: relative;
+    padding: em-calc(30px) $padding-sm $padding-sm;
+    flex: 1 1 auto;
+    text-align: center;
+    font-family: $sans-serif;
+    font-size: $base-font;
+    font-weight: 400;
+    line-height: em-calc(18px);
+    color: $dark-orchid;
+    text-transform: uppercase;
+    cursor: pointer;
+		transition: all 200ms ease-in-out;
+    opacity: 0.2;
+
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-size: contain;
+    }
+
+    &.pomodoro {
+      &::before {
+        width: em-calc(20px);
+        height: em-calc(16px);
+        background-image: url('assets/images/icons/task.png');
+      }
+    }
+
+    &.short-break {
+      &::before {
+        width: em-calc(20px);
+        height: em-calc(18px);
+        background-image: url('assets/images/icons/chat.png');
+      }
+    }
+
+    &.long-break {
+      &::before {
+        width: em-calc(21px);
+        height: em-calc(24px);
+        transform: translateX(-50%) translateY(-30%);
+        background-image: url('assets/images/icons/hot-coffee.png');
+      }
+    }
+
+    &.active{
+      box-shadow: 0px 4px 0 0 $dark-orchid;
+    }
+
+    &.active,
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

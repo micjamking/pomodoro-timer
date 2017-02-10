@@ -1,25 +1,29 @@
-<div class="history-table">
-  <table>
-    <thead class="table-header">
-      <tr>
-        <th class="checkmark"></th>
-        <th>Timer</th>
-        <th>Started</th>
-        <th>Ended</th>
-      </tr>
-    </thead>
-    <tbody class="table-body">
-      <tr *ngFor="let session of historyService.history"
-          class="table-row">
-        <td [class.check]="session.isPomodoro">{{ session.isPomodoro ? '√' : '' }}</td>
-        <td>{{ session.type | dashToSpace | capitalize }}</td>
-        <td>{{ session.started | date:'shortTime' }}</td>
-        <td>{{ session.ended | date:'shortTime' }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class="sidebar history">
+  <div class="history-table">
+    <table>
+      <thead class="table-header">
+        <tr>
+          <th class="checkmark"></th>
+          <th>Timer</th>
+          <th>Started</th>
+          <th>Ended</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr *ngFor="let session of historyService.history"
+            class="table-row {{ session.isPomodoro ? 'pomodoro' : '' }}">
+          <td [class.check]="session.isPomodoro">{{ session.isPomodoro ? '√' : '' }}</td>
+          <td>{{ session.type | dashToSpace | capitalize }}</td>
+          <td>{{ session.started | date:'shortTime' }}</td>
+          <td>{{ session.ended | date:'shortTime' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="sidebar-action">
-  <button type="button" (click)="historyService.clearAll()">Clear History</button>
-<div>
+  <div class="sidebar-action">
+    <button type="button"
+            class="sidebar-button"
+            (click)="historyService.clearAll()">Clear History</button>
+  <div>
+</div>

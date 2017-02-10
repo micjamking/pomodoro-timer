@@ -1,0 +1,162 @@
+/**
+ * Settings
+ */
+
+.custom-timers,
+.custom-alarms {
+  h3 {
+    font-family: $sans-serif;
+    font-size: em-calc(12px);
+    font-weight: 500;
+    color: $platinum-50;
+    text-align: left;
+  }
+}
+
+.custom-timers {
+
+  .timers-list {
+    list-style: none;
+    margin-bottom: em-calc(15px);
+
+    li {
+      padding: em-calc(10px) 0;
+      border-top: em-calc(1px) solid $white;
+      border-bottom: em-calc(1px) solid rgba(115, 115, 116, 0.05);
+      font-family: $sans-serif;
+      font-size: em-calc(12px);
+      color: $platinum;
+      font-weight: 400;
+      display: flex;
+      justify-content: space-between;
+
+      label {
+        display: block;
+        width: 100px;
+      }
+
+      .input-container {
+        text-align: right;
+      }
+
+      input {
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+        outline: none;
+        width: 30px;
+        height: 20px;
+        margin-right: 6px;
+        text-align: center;
+        font-family: $sans-serif;
+        font-size: em-calc(12px);
+        color: $platinum-50;
+        @include input-background;
+      }
+
+      &:first-child {
+        border-top: none;
+        padding: 0 0 em-calc(10px);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .checkbox-container {
+    display: flex;
+    margin-bottom: em-calc(20px);
+
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      border: none;
+      outline: none;
+      @include input-background;
+      width: 16px;
+      height: 14px;
+      margin-right: 10px;
+      cursor: pointer;
+
+      &:checked {
+        background-image: url('assets/images/icons/check.png');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+
+    label {
+      font-family: $sans-serif;
+      font-style: italic;
+      font-size: em-calc(12px);
+      color: $platinum-50;
+      cursor: pointer;
+    }
+  }
+
+  .sidebar-button {
+    width: em-calc(156px);
+    cursor: pointer;
+  }
+}
+
+.custom-alarms {
+  .custom-alarms-menu {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: em-calc(30px);
+    padding: em-calc(7px) em-calc(10px);
+    font-family: $sans-serif;
+    font-size: em-calc(12px);
+    color: $platinum-50;
+    margin-bottom: em-calc(10px);
+    background-image: url('assets/images/icons/triangle.png');
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    background-size: 6px 5px;
+    cursor: pointer;
+    @include input-background;
+  }
+
+  .preview-alarm {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    font-size: em-calc(12px);
+    color: $dark-orchid;
+    text-transform: uppercase;
+    background: none;
+    cursor: pointer;
+    transform: translate(-10%, 0);
+
+    &[disabled] {
+      opacity: 0.5;
+      cursor: auto;
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      display: block;
+      content: '';
+      width: em-calc(12px);
+      height: em-calc(12px);
+      background-image: url('assets/images/icons/volume-up.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      transform: translate(130%, -50%);
+    }
+  }
+}

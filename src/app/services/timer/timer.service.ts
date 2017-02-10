@@ -11,6 +11,8 @@ import { CamelizePipe } from '../../pipes/camelize/camelize.pipe';
 
 @Injectable()
 export class TimerService {
+  private worker: Worker;
+
   /**
    * The main time object
    */
@@ -25,6 +27,7 @@ export class TimerService {
     private historyService: HistoryService,
     private settingsService: SettingsService
   ){
+    // this.timerWebWorker();
     console.log('timerService instantiated');
   }
 
@@ -167,58 +170,67 @@ export class TimerService {
 
     console.log('timer running: ', this.time.running.getValue());
 
-    // Remove initial one second delay
-    this.time.duration--;
+    if (this.getDuration(this.getType()) === this.time.duration) {
+      // Remove initial one second delay
+      this.time.duration--;
+    }
 
-    var start = Date.now(),
-        diff,
-        tempTime;
+    var start = Date.now();
 
     this.time.started = this.time.started || new Date();
 
+    this.worker = new Worker('timer.worker.js');
+
     var timer = () => {
 
-      diff = this.time.duration - (((Date.now() - start) / 1000) | 0);
+      if (this.worker && this.time.running.getValue()){
 
-      if (this.time.running.getValue()){
-        if (diff > 0) {
-          setTimeout(timer, this.time.granularity);
-        } else {
-          diff = 0;
+        this.worker.postMessage({ 'start': start, 'duration': this.time.duration, 'granularity': this.time.granularity });
+        console.log('Message posted to worker');
 
-          this.time.running.next(false);
-          this.time.ended = new Date();
+        this.worker.addEventListener('message', (e: MessageEvent) => {
+          console.log('Message received from worker', e.data);
 
-          this.historyService.addTimeSegment(
-            this.time.type.getValue(),
-            this.time.started,
-            this.time.ended
-          );
+          let diff = e.data;
 
-          if (this.settingsService.currentSettings.alarm !== 'none'){
-            this.settingsService.playAlarm();
+          if (diff <= 0) {
+            this.time.running.next(false);
+            this.time.ended = new Date();
+
+            this.historyService.addTimeSegment(
+              this.time.type.getValue(),
+              this.time.started,
+              this.time.ended
+            );
+
+            if (this.settingsService.currentSettings.alarm !== 'none'){
+              this.settingsService.playAlarm();
+            }
+
+            setTimeout(() => {
+              let timerType = this.capitalizePipe.transform(this.dashToSpacePipe.transform(this.time.type.getValue()));
+              this.worker.terminate();
+              window.alert(timerType + ' ended at ' + this.datePipe.transform(this.time.ended, 'shortTime'));
+            }, 1000);
+
+            console.log('timer ended: ', this.time);
           }
 
-          setTimeout(() => {
-            let timerType = this.capitalizePipe.transform(this.dashToSpacePipe.transform(this.time.type.getValue()));
-            window.alert(timerType + ' ended at ' + this.datePipe.transform(this.time.ended, 'shortTime'));
-          }, 1000);
+          this.time.currentTime.next(this.parseTime(diff));
 
-          console.log('timer ended: ', this.time);
-        }
+          if (diff === 0 && this.settingsService.currentSettings.autoswitch){
+            setTimeout(() => {
+              this.setType(this.getNextTimer());
+              this.startTimer();
+            }, 1000);
+          }
 
-        this.time.currentTime.next(this.parseTime(diff));
+          this.time.tickFtns.forEach(function(ftn) {
+            ftn(this.time.currentTime.getValue()['minutes'], this.time.currentTime.getValue()['seconds']);
+          }, this);
 
-        if (diff === 0 && this.settingsService.currentSettings.autoswitch){
-          setTimeout(() => {
-            this.setType(this.getNextTimer());
-            this.startTimer();
-          }, 1000);
-        }
+        });
 
-        this.time.tickFtns.forEach(function(ftn) {
-          ftn(this.time.currentTime.getValue()['minutes'], this.time.currentTime.getValue()['seconds']);
-        }, this);
       } else {
         return;
       }
@@ -234,6 +246,10 @@ export class TimerService {
     this.time.running.next(false);
     this.time.duration = this.getSeconds(this.time.currentTime.getValue());
 
+    if (this.worker) {
+      this.worker.terminate();
+    }
+
     console.log('paused timer', this.time);
 
     return this;
@@ -243,6 +259,9 @@ export class TimerService {
    * Restart Timer
    */
   public restartTimer() : TimerService {
+    if (this.worker) {
+      this.worker.terminate();
+    }
 
     this.setTimer(
       this.time.type.getValue(),
@@ -275,6 +294,12 @@ export class TimerService {
     if (!this.time){ return; }
 
     return this.time.running;
+  }
+
+  /**
+   * Web Worker
+   */
+  private timerWebWorker() {
   }
 
 }

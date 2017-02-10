@@ -94,7 +94,7 @@ export class SettingsService {
     if (this.currentSettings.alarm === "none") { return; }
 
     var audio = new Audio();
-    audio.src = "/assets/audio/" + this.currentSettings.alarm + ".mp3";
+    audio.src = "assets/audio/" + this.currentSettings.alarm + ".mp3";
     audio.load();
     audio.play();
 

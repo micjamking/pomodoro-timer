@@ -9,7 +9,15 @@ $sans-serif: 'Ubuntu', sans-serif;
 $timer-font: 'Domine', sans-serif;
 
 // Colors
-$white: rgba(255, 255, 255, 1.0);
+$white: rgba(255, 255, 255, 1.00);
+$black-squeeze: rgba(245, 248, 250, 1.00);
+$dark-orchid: rgba(141, 60, 183, 1.00);
+$platinum: rgba(115, 115, 116, 1.00);
+$platinum-50: rgba(115, 115, 116, 0.5);
+
+// Sizes
+$padding: em-calc(20px);
+$padding-sm: em-calc(7px);
 
 // General screen sizes
 $medium: 640px;

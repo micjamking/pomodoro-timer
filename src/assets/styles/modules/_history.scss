@@ -1,0 +1,91 @@
+/**
+ * History
+ */
+
+.history-table {
+
+  table {
+    table-layout: fixed;
+    border-spacing: 0px;
+    margin-bottom: em-calc(30px);
+  }
+
+  .table-header {
+
+    th {
+      font-family: $sans-serif;
+      font-size: em-calc(12px);
+      font-weight: 500;
+      color: $platinum-50;
+      text-align: left;
+
+      &:nth-child(1) {
+        width: 0;
+      }
+
+      &:nth-child(2) {
+        width: em-calc(70px);
+      }
+
+      &:nth-child(3) {
+        width: em-calc(56px);
+      }
+
+      &:nth-child(4) {
+        text-align: right;
+        width: em-calc(56px);
+      }
+    }
+  }
+
+  .table-body {
+    .table-row {
+      td {
+        padding: em-calc(10px) 0;
+        font-family: $sans-serif;
+        font-size: em-calc(12px);
+        color: $platinum-50;
+        font-weight: 400;
+        border-top: em-calc(1px) solid $white;
+        border-bottom: em-calc(1px) solid rgba(115, 115, 116, 0.05);
+
+        &:first-child {
+          border: none;
+        }
+
+        &:nth-child(4) {
+          text-align: right;
+        }
+      }
+
+      &.pomodoro {
+        td {
+          color: $platinum;
+
+          &.check {
+            width: 16px;
+            height: 16px;
+            background-image: url('assets/images/icons/checkmark.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            text-indent: -9999em;
+            transform: translateX(-50%);
+          }
+        }
+      }
+
+      &:first-child {
+        td {
+          border-top: none;
+        }
+      }
+
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

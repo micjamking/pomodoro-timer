@@ -1,43 +1,53 @@
-<div class="custom-timers">
-  <h3>Customize Timers</h3>
+<div class="sidebar settings">
+  <div class="custom-timers">
+    <h3>Customize Timers</h3>
 
-  <form #customTimersForm="ngForm" class="custom-timers-form">
-    <ul class="timers-list">
-      <li *ngFor="let type of settingsService.timerTypes" class="{{ type }}-timer">
-        <label for="{{ type }}-input">{{ type | dashToSpace | capitalize }}</label>
-        <input type="text" placeholder="{{ settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer'] }}" name="{{ type }}Input"
-               [(ngModel)]="settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer']"
-               (ngModelChange)="refreshTimer($event); saveSettings()" /> min
-      </li>
-    </ul>
+    <form #customTimersForm="ngForm" class="custom-timers-form">
+      <ul class="timers-list">
+        <li *ngFor="let type of settingsService.timerTypes" class="{{ type }}-timer">
+          <label for="{{ type }}-input">{{ type | dashToSpace | capitalize }}</label>
+          <div class="input-container">
+            <input type="text" placeholder="{{ settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer'] }}"
+                   name="{{ type }}Input" id="{{ type }}-input"
+                   [(ngModel)]="settingsService.currentSettings[ this.camelizePipe.transform(type) + 'Timer']"
+                   (ngModelChange)="refreshTimer($event); saveSettings()" /> min
+          </div>
+        </li>
+      </ul>
 
-    <!-- Auto-switch checkbox -->
-    <input type="checkbox" name="auto-switch-timers"
-           [(ngModel)]="settingsService.currentSettings.autoswitch"
-           (ngModelChange)="saveSettings()" />
-    <label for="auto-switch-timers">Auto-switch timers at end of each interval</label>
+      <!-- Auto-switch checkbox -->
+      <div class="checkbox-container">
+        <input type="checkbox" name="auto-switch-timers"
+               id="auto-switch-timers"
+               [(ngModel)]="settingsService.currentSettings.autoswitch"
+               (ngModelChange)="saveSettings()" />
+        <label for="auto-switch-timers">Auto-switch timers at end of each interval</label>
+      </div>
 
-    <div class="sidebar-action">
-      <button type="button" (click)="resetSettings()">Reset</button>
-    </div>
-  </form>
-</div>
+      <div class="sidebar-action">
+        <button type="button"
+                class="sidebar-button"
+                (click)="resetSettings()">Reset</button>
+      </div>
+    </form>
+  </div>
 
-<div class="custom-alarms">
-  <h3>Customize Alarms</h3>
+  <div class="custom-alarms">
+    <h3>Customize Alarms</h3>
 
-  <form #customAlarmsForm="ngForm" class="custom-alarms-form">
-    <select name="customAlarmsMenu" class="custom-alarms-menu"
-            [(ngModel)]="settingsService.currentSettings.alarm"
-            (ngModelChange)="saveSettings()">
-      <option value="none">--Select an alarm--</option>
-      <option *ngFor="let alarm of settingsService.alarmTypes" value="{{ alarm }}">{{ alarm | dashToSpace | capitalize }}</option>
-    </select>
+    <form #customAlarmsForm="ngForm" class="custom-alarms-form">
+      <select name="customAlarmsMenu" class="custom-alarms-menu"
+              [(ngModel)]="settingsService.currentSettings.alarm"
+              (ngModelChange)="saveSettings()">
+        <option value="none">--Select an alarm--</option>
+        <option *ngFor="let alarm of settingsService.alarmTypes" value="{{ alarm }}">{{ alarm | dashToSpace | capitalize }}</option>
+      </select>
 
-    <div class="sidebar-action">
-      <button type="button" class="preview-alarm"
-              [disabled]="settingsService.currentSettings.alarm === 'none'"
-              (click)="previewAlarm()">Preview</button>
-    </div>
-  </form>
+      <div class="sidebar-action">
+        <button type="button" class="preview-alarm"
+                [disabled]="settingsService.currentSettings.alarm === 'none'"
+                (click)="previewAlarm()">Preview</button>
+      </div>
+    </form>
+  </div>
 </div>

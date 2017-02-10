@@ -1,0 +1,36 @@
+/**
+ * Sidebar
+ */
+
+.sidebar-detail {
+  position: relative;
+    width: em-calc(240px);
+    height: 100%;
+    background: $black-squeeze;
+    border-radius: 0 10px 10px 0;
+    flex: 1 1 auto;
+    padding: $padding;
+
+    .subheader {
+      text-align: center;
+      font-family: $sans-serif;
+      font-size: $base-font;
+      font-weight: 500;
+      color: $platinum-50;
+    }
+
+    .sidebar-action {
+      margin-bottom: em-calc(30px);
+    }
+
+    .sidebar-toggle {
+      position: absolute;
+      bottom: em-calc(40px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .sidebar {
+      @include animation('fade-in', $iteration-count: 1, $duration: 0.5s);
+    }
+}

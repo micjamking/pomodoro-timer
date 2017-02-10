@@ -1,5 +1,11 @@
-<button type="button"
-        (click)="toggleTimer()">
-        {{ (timerService.isRunning() | async) ? 'Pause' : 'Play' }}
-</button>
-<button type="button" (click)="restartTimer()">Restart</button>
+<div class="action-buttons">
+  <button type="button"
+          class="action-button {{ (timerService.isRunning() | async) ? 'pause' : 'play' }}"
+          (click)="toggleTimer()">
+          {{ (timerService.isRunning() | async) ? 'Pause' : 'Play' }}
+  </button>
+  <button type="button"
+          class="action-button restart"
+          (click)="restartTimer()">Restart
+  </button>
+</div>

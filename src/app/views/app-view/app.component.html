@@ -1,7 +1,13 @@
 <div class="container">
   <section class="section-master">
-    <a routerLink="/about" routerLinkActive="active">About</a>
-    <a routerLink="/timer" routerLinkActive="active">Timer</a>
+    <a *ngIf="showTimer()"
+        routerLink="/about"
+        routerLinkActive="active"
+        class="help-icon about">About</a>
+    <a *ngIf="!showTimer()"
+        routerLink="/timer"
+        routerLinkActive="active"
+        class="help-icon timer">Timer</a>
     <router-outlet></router-outlet>
   </section>
 
