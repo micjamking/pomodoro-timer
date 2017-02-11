@@ -1,0 +1,48 @@
+<!--
+/**
+ * Reference: https://github.com/angular/angular-cli/issues/41#issuecomment-208456482
+ * Copy dist/index.html to dist/404.html.
+ * This will enable browser-reloads together with the PathLocationStrategy.
+ *
+ */
+-->
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- Settings -->
+  <base href="/">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+  <!-- Stylesheets -->
+  <link href="//fonts.googleapis.com/css?family=Domine|Ubuntu:300,300i,400,500,700,700i" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Sauce: A Pomodoro Timer</title>
+
+</head>
+<body class="light">
+  <!-- Application Root -->
+  <app-root></app-root>
+
+  <!-- Application Preloader -->
+  <div class="application-loader active">
+    <span class="preloader-text">Loading...</span>
+    <div class="preloader loading">
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+      <span class="slice"></span>
+    </div>
+  </div>
+</body>
+</html>
