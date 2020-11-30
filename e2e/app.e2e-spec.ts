@@ -1,6 +1,6 @@
 import { SauceTimerPage } from './app.po';
 
-describe('sauce-timer App', function() {
+describe('timer App', function() {
   let page: SauceTimerPage;
 
   beforeEach(() => {

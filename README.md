@@ -58,7 +58,7 @@ $ npm install
 
 ### Development
 ```
-$ npm run serve
+$ npm start
 ```
 _Runs `ng serve` for a dev server. Navigate to `http://localhost:4201/`. The app will automatically reload if you change any of the source files._
 
